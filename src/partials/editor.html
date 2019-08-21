@@ -1,0 +1,187 @@
+<div class="editor-row">
+
+  <div class="section gf-form-group">
+    <h5 class="section-heading">Map Visual Options</h5>
+    <div class="gf-form">
+      <label class="gf-form-label width-10">Center</label>
+      <div class="gf-form-select-wrapper max-width-10">
+        <select class="input-small gf-form-input" ng-model="ctrl.panel.mapCenter" ng-options="t for t in ['(0°, 0°)', 'North America', 'Europe', 'West Asia', 'SE Asia', 'custom', 'First Marker']"
+          ng-change="ctrl.setNewMapCenter()"></select>
+      </div>
+      <div class="gf-form" ng-show="ctrl.panel.mapCenter === 'custom'">
+        <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.mapCenterLatitude" ng-change="ctrl.setNewMapCenter()"
+          ng-model-onblur />
+        <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.mapCenterLongitude" ng-change="ctrl.setNewMapCenter()"
+          ng-model-onblur />
+      </div>
+    </div>
+    <div class="gf-form">
+      <label class="gf-form-label width-10">Initial Zoom</label>
+      <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.initialZoom" ng-change="ctrl.setZoom()"
+        placeholder="1" ng-model-onblur />
+    </div>
+    <gf-form-switch class="gf-form" label="Sticky Labels" label-class="width-10" checked="ctrl.panel.stickyLabels" on-change="ctrl.toggleStickyLabels()">
+    </gf-form-switch>
+    <div class="gf-form">
+      <label class="gf-form-label width-10">Decimals</label>
+      <input type="number" class="input-small gf-form-input width-10" ng-model="ctrl.panel.decimals" ng-change="ctrl.refresh()"
+        ng-model-onblur />
+    </div>
+    <div class="gf-form">
+      <label class="gf-form-label width-12">Aggregation</label>
+      <div class="gf-form-select-wrapper max-width-10">
+        <select class="input-small gf-form-input" ng-model="ctrl.panel.valueName" ng-options="f for f in ['min','max','avg', 'current', 'total']"
+          ng-change="ctrl.refresh()"></select>
+      </div>
+    </div>
+    <gf-form-switch class="gf-form" label="Show Legend" label-class="width-10" checked="ctrl.panel.showLegend" on-change="ctrl.toggleLegend()"></gf-form-switch>
+    <gf-form-switch class="gf-form" label="Mouse Wheel Zoom" label-class="width-10" checked="ctrl.panel.mouseWheelZoom" on-change="ctrl.toggleMouseWheelZoom()"></gf-form-switch>
+  </div>
+
+
+
+  <div class="section gf-form-group">
+    <h5 class="section-heading">Marker Location Data</h5>
+    <div class="gf-form-group">
+      <div class="gf-form">
+        <label class="gf-form-label width-12">Location Data</label>
+        <div class="gf-form-select-wrapper max-width-10">
+          <select class="input-small gf-form-input" ng-model="ctrl.panel.locationData" ng-options="t for t in ['json endpoint', 'jsonp endpoint']"
+            ng-change="ctrl.changeLocationData()"></select>
+        </div>
+      </div>
+      <div class="gf-form" ng-show="ctrl.panel.locationData === 'json endpoint'">
+        <label class="gf-form-label width-12">Endpoint url</label>
+        <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.jsonUrl" ng-change="ctrl.refresh()" ng-model-onblur
+        />
+      </div>
+      <div class="gf-form" ng-show="ctrl.panel.locationData === 'jsonp endpoint'">
+        <label class="gf-form-label width-12">Endpoint url</label>
+        <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.jsonpUrl" ng-change="ctrl.refresh()" ng-model-onblur
+        />
+      </div>
+      <div class="gf-form" ng-show="ctrl.panel.locationData === 'jsonp endpoint'">
+        <label class="gf-form-label width-12">Jsonp Callback</label>
+        <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.jsonpCallback" ng-change="ctrl.refresh()"
+          ng-model-onblur />
+      </div>
+
+
+    </div>
+
+
+
+
+    <h5 class="section-heading">Marker Link</h5>
+       <div class="gf-form">
+         <label class="gf-form-label width-9">
+           Url
+           <info-popover mode="right-normal">
+             <p>Specify an URL (relative or absolute)</p>
+             <span>
+               Use special variables to specify cell values:
+               <br>
+               <em>$uid</em> refers to current device uid
+               <br>
+               <em>$name</em> refers to current device name
+               <br>
+               <em>$appSubUrl</em> refers to path that grafana is accessed at relative to the root domain
+             </span>
+           </info-popover>
+         </label>
+         <input type="text" class="gf-form-input width-29" ng-model="ctrl.panel.linkUrl" ng-change="ctrl.refresh()" ng-model-onblur data-placement="right">
+       </div>
+       <div class="gf-form">
+         <label class="gf-form-label width-9">
+           Tooltip
+           <info-popover mode="right-normal">
+             <p>Specify text for link title.</p>
+             <span>
+                 This title appears below the marker popup and can be clicked for more information.
+             </span>
+           </info-popover>
+         </label>
+         <input type="text" class="gf-form-input width-29" ng-model="ctrl.panel.linkTitle" ng-change="ctrl.refresh()" ng-model-onblur
+             data-placement="right">
+       </div>
+       <gf-form-switch class="gf-form" label-class="width-9" label="Open in new tab" checked="ctrl.panel.linkTargetBlank"></gf-form-switch>
+     </div>
+
+
+
+
+
+
+
+  <div class="section gf-form-group">
+
+
+
+
+
+          <h5 class="section-heading">Marker Size</h5>
+          <div class="gf-form-group">
+
+
+            <div class="gf-form">
+              <label class="gf-form-label width-10">Metric Regexp</label>
+                <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.sizeMetricPattern" ng-change="ctrl.refresh()">
+            </div>
+
+            <div class="gf-form">
+              <label class="gf-form-label width-10">Min Size</label>
+              <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.circleMinSize" ng-change="ctrl.render()"
+                placeholder="2" ng-model-onblur />
+            </div>
+            <div class="gf-form">
+              <label class="gf-form-label width-10">Max Size</label>
+              <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.circleMaxSize" ng-change="ctrl.render()"
+                placeholder="30" ng-model-onblur />
+            </div>
+
+          </div>
+
+
+          <h5 class="section-heading">Marker Color</h5>
+          <div class="gf-form-group">
+
+
+
+
+            <div class="gf-form">
+              <label class="gf-form-label width-10">Metric Regexp</label>
+                <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.colorMetricPattern" ng-change="ctrl.refresh()">
+            </div>
+
+              <div class="gf-form">
+                <label class="gf-form-label width-10">Thresholds</label>
+                <input type="text" class="input-small gf-form-input width-10" ng-model="ctrl.panel.thresholds" ng-change="ctrl.changeThresholds()"
+                  placeholder="0,10" ng-model-onblur />
+              </div>
+
+              <div class="gf-form">
+                <label class="gf-form-label width-10">Colors</label>
+                <spectrum-picker class="gf-form-input width-3" ng-repeat="color in ctrl.panel.colors track by $index" ng-model="ctrl.panel.colors[$index]"
+                  ng-change="ctrl.changeThresholds()"></spectrum-picker>
+              </div>
+
+
+
+
+          </div>
+
+
+  </div>
+
+
+
+  </div>
+
+  <div class="section gf-form-group">
+    <h5 class="section-heading">Hide series</h5>
+    <gf-form-switch class="gf-form" label="With only nulls" label-class="width-10" checked="ctrl.panel.hideEmpty" on-change="ctrl.render()">
+    </gf-form-switch>
+    <gf-form-switch class="gf-form" label="With only zeros" label-class="width-10" checked="ctrl.panel.hideZero" on-change="ctrl.render()">
+    </gf-form-switch>
+  </div>
+</div>

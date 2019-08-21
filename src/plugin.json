@@ -1,0 +1,49 @@
+{
+  "type": "panel",
+  "name": "FlexSCADA Map Panel",
+  "id": "flexscada-map-panel",
+
+  "info": {
+    "description": "FlexSCADA Mapping Plugin.  Overlays device locations on a map along with selected metrics",
+    "author": {
+      "name": "FlexSCADA Systems",
+      "url": "https://flexscada.com"
+    },
+    "keywords": ["flexscada", "panel"],
+    "logos": {
+      "small": "images/flexscada_small.png",
+      "large": "images/flexscada.png"
+    },
+    "links": [
+      {
+          "name": "FlexSCADA",
+          "url": "https://flexscada.com"
+        },
+        {
+          "name": "GitHub",
+          "url": "https://github.com/comming-soon"
+        },
+        {
+          "name": "License",
+          "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    ],
+    "screenshots": [
+      {
+          "name": "FlexSCADA Vibration Monitoring",
+          "path": "img/vibration-montioring-dashboard.png"
+        },
+        {
+          "name": "FlexSCADA Remote Site Monitoring",
+          "path": "img/remote-site-monitoring-dashboard.png"
+        }
+    ],
+    "version": "0.0.1",
+    "updated": "2019-08-21"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "3.x.x",
+    "plugins": [ ]
+  }
+}
