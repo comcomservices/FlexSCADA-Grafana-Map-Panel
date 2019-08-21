@@ -1,5 +1,10 @@
 # FlexSCADA Map Panel Plugin for Grafana
 
+Based on the Grafana World Map Plugin (https://github.com/grafana/worldmap-panel) but allows for more device oriented display where markers can contain the results of queries and you can choose which query dictates color and size etc.
+
+
+
+
 The FlexSCADA Map Panel is a tile map of the world that can be overlaid with circles representing data points from a query. It can be used with time series metrics
 
 ## How The Map Works (Theory and Examples)
